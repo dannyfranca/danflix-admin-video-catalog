@@ -1,0 +1,13 @@
+{
+  "name": "devflix-admin-video-catalog",
+  "version": "1.0.0",
+  "description": "Video catalog admin",
+  "author": "Danny França <me@dannyfranca.com>",
+  "main": "index.js",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.26",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  }
+}
