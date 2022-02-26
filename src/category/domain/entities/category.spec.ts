@@ -1,6 +1,6 @@
-import { generateUUIDV4, isUUID } from '@/utils/uuid'
 import {omit} from 'lodash'
 
+import UniqueEntityId from '@/@seedwork/domain/unique-entity-id'
 import { Category } from "./category"
 
 describe('Category Tests', () => {
@@ -74,16 +74,15 @@ describe('Category Tests', () => {
 
   test('id field', () => {
     let category: Category
-    let validUUID = generateUUIDV4()
-    let noUUID = 'abc'
+    let uniqueId: UniqueEntityId
 
     category = new Category({name: 'Movie'})
-    expect(isUUID(category.id)).toBe(true)
+    expect(category.id).toBeInstanceOf(UniqueEntityId)
 
-    category = new Category({name: 'Movie'}, validUUID)
-    expect(isUUID(category.id)).toBe(true)
-    expect(category.id).toBe(validUUID)
-
-    expect(() => new Category({name: 'Movie'}, noUUID)).toThrowError()
+    uniqueId = new UniqueEntityId()
+    category = new Category({name: 'Movie'}, uniqueId)
+    expect(category.id).toBeInstanceOf(UniqueEntityId)
+    expect(category.id).toBe(uniqueId)
+    expect(category.id.id).toBe(uniqueId.id)
   })
 })
