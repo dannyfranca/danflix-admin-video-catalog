@@ -1,5 +1,7 @@
 import {SetOptional} from 'type-fest'
 
+import { HasUUID } from '@/entities/has-uuid'
+
 export type CategoryProperties = {
   name: string
   description: string | null
@@ -9,13 +11,14 @@ export type CategoryProperties = {
 
 export type CategoryPropertiesInput = SetOptional<CategoryProperties, 'description' | 'is_active' | 'created_at'>
 
-export class Category {
+export class Category extends HasUUID {
   private _name: string
   private _description: string | null
   private _is_active: boolean
   private _created_at: Date
 
-  constructor(props: CategoryPropertiesInput) {
+  constructor(props: CategoryPropertiesInput, id?: string) {
+    super(id)
     this._name = props.name
     this._description = props.description ?? null
     this._is_active = props.is_active ?? true

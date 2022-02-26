@@ -1,3 +1,4 @@
+import { generateUUIDV4, isUUID } from '@/utils/uuid'
 import {omit} from 'lodash'
 
 import { Category } from "./category"
@@ -69,5 +70,20 @@ describe('Category Tests', () => {
     created_at = new Date()
     category = new Category({ name: 'Movie', created_at })
     expect(category.created_at).toBe(created_at)
+  })
+
+  test('id field', () => {
+    let category: Category
+    let validUUID = generateUUIDV4()
+    let noUUID = 'abc'
+
+    category = new Category({name: 'Movie'})
+    expect(isUUID(category.id)).toBe(true)
+
+    category = new Category({name: 'Movie'}, validUUID)
+    expect(isUUID(category.id)).toBe(true)
+    expect(category.id).toBe(validUUID)
+
+    expect(() => new Category({name: 'Movie'}, noUUID)).toThrowError()
   })
 })
