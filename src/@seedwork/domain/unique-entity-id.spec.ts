@@ -1,19 +1,25 @@
 import InvalidUuidError from "../errors/invalid-uuid.error"
 import UniqueEntityId from "./unique-entity-id"
 
-describe('Unique Id Tests', () => {
-  test('id generation', () => {
-    let uniqueId: UniqueEntityId
-    let validUUID = UniqueEntityId.generateUuid()
-    let noUUID = 'abc'
+describe('Unique Id Unit Tests', () => {
+  it('should accept nothing passed in constructor', () => {
+    let uniqueId: UniqueEntityId | undefined
+    expect(() => uniqueId = new UniqueEntityId()).not.toThrow()
+    expect(uniqueId?.id).toBeTruthy()
+  })
 
-    uniqueId = new UniqueEntityId()
-    expect(UniqueEntityId.isUuid(uniqueId.id)).toBe(true)
+  it('should accept a valid uuid passed in constructor', () => {
+    let uniqueId: UniqueEntityId
+    let validUUID = '766a36f1-077f-4e18-ab6f-66aa2bad98a5'
 
     uniqueId = new UniqueEntityId(validUUID)
-    expect(UniqueEntityId.isUuid(uniqueId.id)).toBe(true)
     expect(uniqueId.id).toBe(validUUID)
+  })
 
-    expect(() => new UniqueEntityId(noUUID)).toThrowError(InvalidUuidError)
+  it('should throw error when id invalid', () => {
+    const validateSpy = jest.spyOn(UniqueEntityId.prototype as any, 'validate')
+    let noUUID = 'abc'
+    expect(() => new UniqueEntityId(noUUID)).toThrow(InvalidUuidError)
+    expect(validateSpy).toHaveBeenCalled()
   })
 })
