@@ -13,11 +13,11 @@ export default class UniqueEntityId {
     if (!UniqueEntityId.isUuid(this.id)) throw new InvalidUuidError()
   }
 
-  static generateUuid() {
+  private static generateUuid() {
     return uuidV4()
   }
 
-  static isUuid(value: string) {
+  private static isUuid(value: string) {
     return isUUID(value)
   }
 }
