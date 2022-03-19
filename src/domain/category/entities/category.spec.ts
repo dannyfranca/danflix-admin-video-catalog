@@ -1,6 +1,6 @@
+import UniqueEntityId from '@/@shared/value-objects/unique-entity-id'
 import {omit} from 'lodash'
 
-import UniqueEntityId from '@/@seedwork/domain/unique-entity-id'
 import { Category } from "./category"
 
 describe('Category Tests', () => {

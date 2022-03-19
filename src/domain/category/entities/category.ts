@@ -1,6 +1,7 @@
 import {SetOptional} from 'type-fest'
 
-import UniqueEntityId from '@/@seedwork/domain/unique-entity-id'
+import UniqueEntityId from '@/@shared/value-objects/unique-entity-id'
+
 
 export type CategoryProperties = {
   name: string
