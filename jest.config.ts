@@ -5,7 +5,7 @@
 
 export default {
   clearMocks: true,
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
   moduleFileExtensions: ['js', 'json', 'ts'],
   moduleNameMapper: {
     '@/(.*)$': '<rootDir>/$1',
