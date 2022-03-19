@@ -1,11 +1,11 @@
-import UniqueEntityId from '../value-objects/unique-entity-id';
-import { Entity, PlainEntity } from './base-entity';
+import UniqueEntityId from "../value-objects/unique-entity-id";
+import { BaseEntity, PlainBaseEntity } from "./base-entity";
 
-const strName = 'Entity';
+const strName = "Entity";
 
-describe('Entity Tests', () => {
-  test('entity constructor', () => {
-    let entity = new Entity({});
+describe("Entity Tests", () => {
+  test("entity constructor", () => {
+    let entity = new BaseEntity({});
     let created_at: Date;
     const deleted_at = new Date();
 
@@ -13,16 +13,16 @@ describe('Entity Tests', () => {
     expect(entity.deleted_at).toBeNull();
 
     created_at = new Date();
-    entity = new Entity({
+    entity = new BaseEntity({
       created_at,
     });
     expect(entity.plain).toMatchObject({
       created_at,
       deleted_at: null,
-    } as PlainEntity);
+    } as PlainBaseEntity);
 
     created_at = new Date();
-    entity = new Entity({
+    entity = new BaseEntity({
       created_at,
       deleted_at,
     });
@@ -32,28 +32,28 @@ describe('Entity Tests', () => {
     });
   });
 
-  test('entity getters', () => {
-    let entity: Entity;
+  test("entity getters", () => {
+    let entity: BaseEntity;
     const created_at = new Date();
     const deleted_at = new Date();
 
-    entity = new Entity({ deleted_at });
+    entity = new BaseEntity({ deleted_at });
     expect(entity.created_at).toBeInstanceOf(Date);
     expect(entity.deleted_at).toBeInstanceOf(Date);
 
-    entity = new Entity({ created_at });
+    entity = new BaseEntity({ created_at });
     expect(entity.created_at).toBe(created_at);
     expect(entity.deleted_at).toBeNull();
   });
 
-  test('id field', () => {
-    let entity: Entity;
+  test("id field", () => {
+    let entity: BaseEntity;
     const uniqueId = new UniqueEntityId();
 
-    entity = new Entity({});
+    entity = new BaseEntity({});
     expect(entity.id).toBeInstanceOf(UniqueEntityId);
 
-    entity = new Entity({ id: uniqueId });
+    entity = new BaseEntity({ id: uniqueId });
     expect(entity.id).toBeInstanceOf(UniqueEntityId);
     expect(entity.id).toBe(uniqueId);
     expect(entity.id.value).toBe(uniqueId.value);

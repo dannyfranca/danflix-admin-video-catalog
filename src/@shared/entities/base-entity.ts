@@ -1,6 +1,6 @@
-import { SetOptional } from 'type-fest';
+import { SetOptional } from "type-fest";
 
-import UniqueEntityId from '../value-objects/unique-entity-id';
+import UniqueEntityId from "../value-objects/unique-entity-id";
 
 export interface BaseEntityProperties {
   id: UniqueEntityId;
@@ -10,16 +10,16 @@ export interface BaseEntityProperties {
 
 export type BaseEntityPropertiesInput = SetOptional<
   BaseEntityProperties,
-  'id' | 'created_at' | 'deleted_at'
+  "id" | "created_at" | "deleted_at"
 >;
 
-export interface PlainEntity {
+export interface PlainBaseEntity {
   id: string;
   created_at: Date;
   deleted_at: Date | null;
 }
 
-export class Entity {
+export class BaseEntity {
   public readonly id: UniqueEntityId;
   protected _created_at: Date;
   protected _deleted_at: Date | null;
@@ -30,7 +30,7 @@ export class Entity {
     this._deleted_at = props.deleted_at ?? null;
   }
 
-  get plain(): PlainEntity {
+  get plain(): PlainBaseEntity {
     return {
       id: this.id.value,
       created_at: this.created_at,
