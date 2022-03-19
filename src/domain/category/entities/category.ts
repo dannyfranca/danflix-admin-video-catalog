@@ -46,4 +46,32 @@ export class Category extends TimestampableEntity {
       is_active: this._is_active,
     };
   }
+
+  get name() {
+    return this._name;
+  }
+
+  get description() {
+    return this._description;
+  }
+
+  get is_active() {
+    return this._is_active;
+  }
+
+  changeName(name: string) {
+    this._name = name;
+  }
+
+  changeDescription(description: string) {
+    this._description = description;
+  }
+
+  activate() {
+    this._is_active = true;
+  }
+
+  deactivate() {
+    this._is_active = false;
+  }
 }
