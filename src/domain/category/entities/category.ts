@@ -1,24 +1,24 @@
 import { SetOptional } from "type-fest";
 import {
-  TimestampableEntityProperties,
-  TimestampablePropertiesInput,
+  TimestampableEntityProps,
+  TimestampableInput,
   PlainTimestampable,
   TimestampableEntity,
 } from "@/@shared/entities/timestampable-entity";
 
-export interface CategoryPropertiesOnly {
+export interface CategoryPropsOnly {
   name: string;
   description: string | null;
   is_active: boolean;
 }
 
-export interface CategoryProperties
-  extends TimestampableEntityProperties,
-    CategoryPropertiesOnly {}
+export interface CategoryProps
+  extends TimestampableEntityProps,
+    CategoryPropsOnly {}
 
-export interface CategoryPropertiesInput
-  extends TimestampablePropertiesInput,
-    SetOptional<CategoryPropertiesOnly, "description" | "is_active"> {}
+export interface CategoryInput
+  extends TimestampableInput,
+    SetOptional<CategoryPropsOnly, "description" | "is_active"> {}
 
 export interface PlainCategory extends PlainTimestampable {
   name: string;
@@ -31,7 +31,7 @@ export class Category extends TimestampableEntity {
   private _description: string | null;
   private _is_active: boolean;
 
-  constructor(props: CategoryPropertiesInput) {
+  constructor(props: CategoryInput) {
     super(props);
     this._name = props.name;
     this._description = props.description ?? null;

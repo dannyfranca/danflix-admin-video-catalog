@@ -2,27 +2,24 @@ import { SetOptional } from "type-fest";
 
 import UniqueEntityId from "../value-objects/unique-entity-id";
 
-export interface BaseEntityEntityProperties {
+export interface EntityProps {
   id: UniqueEntityId;
 }
 
-export type BaseEntityPropertiesInput = SetOptional<
-  BaseEntityEntityProperties,
-  "id"
->;
+export type EntityInput = SetOptional<EntityProps, "id">;
 
-export interface PlainBaseEntity {
+export interface PlainEntity {
   id: string;
 }
 
-export class BaseEntity {
+export abstract class Entity {
   public readonly id: UniqueEntityId;
 
-  constructor(props?: BaseEntityPropertiesInput) {
+  constructor(props?: EntityInput) {
     this.id = props?.id ?? new UniqueEntityId();
   }
 
-  get plain(): PlainBaseEntity {
+  get plain(): PlainEntity {
     return {
       id: this.id.value,
     };

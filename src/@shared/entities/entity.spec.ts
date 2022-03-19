@@ -1,18 +1,20 @@
 import UniqueEntityId from "../value-objects/unique-entity-id";
-import { BaseEntity, PlainBaseEntity } from "./base-entity";
+import { Entity, PlainEntity } from "./entity";
+
+class StubEntity extends Entity {}
 
 describe("Base entity unit tests", () => {
   test("entity plain object", () => {
-    let entity = new BaseEntity();
+    let entity = new StubEntity();
     let id: UniqueEntityId;
 
-    entity = new BaseEntity();
+    entity = new StubEntity();
     expect(entity.plain).toStrictEqual({
       id: entity.id.value,
-    } as PlainBaseEntity);
+    } as PlainEntity);
 
     id = new UniqueEntityId();
-    entity = new BaseEntity({
+    entity = new StubEntity({
       id,
     });
     expect(entity.plain).toStrictEqual({
@@ -21,14 +23,14 @@ describe("Base entity unit tests", () => {
   });
 
   test("entity getters", () => {
-    let entity: BaseEntity;
+    let entity: Entity;
     let id: UniqueEntityId;
 
-    entity = new BaseEntity();
+    entity = new StubEntity();
     expect(entity.id).toBeInstanceOf(UniqueEntityId);
 
     id = new UniqueEntityId();
-    entity = new BaseEntity({ id });
+    entity = new StubEntity({ id });
     expect(entity.id).toStrictEqual(id);
   });
 });

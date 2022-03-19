@@ -1,33 +1,28 @@
-import {
-  BaseEntity,
-  PlainBaseEntity,
-  BaseEntityEntityProperties,
-  BaseEntityPropertiesInput,
-} from "./base-entity";
+import { Entity, PlainEntity, EntityProps, EntityInput } from "./entity";
 
-export interface TimestampablePropertiesOnly {
+export interface TimestampablePropsOnly {
   created_at: Date;
   deleted_at: Date | null;
 }
 
-export interface TimestampableEntityProperties
-  extends BaseEntityEntityProperties,
-    TimestampablePropertiesOnly {}
+export interface TimestampableEntityProps
+  extends EntityProps,
+    TimestampablePropsOnly {}
 
-export interface TimestampablePropertiesInput
-  extends BaseEntityPropertiesInput,
-    Partial<TimestampablePropertiesOnly> {}
+export interface TimestampableInput
+  extends EntityInput,
+    Partial<TimestampablePropsOnly> {}
 
-export interface PlainTimestampable extends PlainBaseEntity {
+export interface PlainTimestampable extends PlainEntity {
   created_at: Date;
   deleted_at: Date | null;
 }
 
-export class TimestampableEntity extends BaseEntity {
+export class TimestampableEntity extends Entity {
   protected _created_at: Date;
   protected _deleted_at: Date | null;
 
-  constructor(props?: TimestampablePropertiesInput) {
+  constructor(props?: TimestampableInput) {
     super(props);
     this._created_at = props?.created_at ?? new Date();
     this._deleted_at = props?.deleted_at ?? null;
