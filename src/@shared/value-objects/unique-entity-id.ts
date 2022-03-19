@@ -1,23 +1,23 @@
-import {v4 as uuidV4, validate as isUUID} from 'uuid'
-import InvalidUuidError from '../errors/invalid-uuid.error'
+import { v4 as uuidV4, validate as isUUID } from 'uuid';
+import InvalidUuidError from '../errors/invalid-uuid.error';
 
 export default class UniqueEntityId {
-  public readonly id: string
+  public readonly value: string;
 
   constructor(id?: string) {
-    this.id = id ?? UniqueEntityId.generateUuid()
-    this.validate()
+    this.value = id ?? UniqueEntityId.generateUuid();
+    this.validate();
   }
 
   private validate() {
-    if (!UniqueEntityId.isUuid(this.id)) throw new InvalidUuidError()
+    if (!UniqueEntityId.isUuid(this.value)) throw new InvalidUuidError();
   }
 
   private static generateUuid() {
-    return uuidV4()
+    return uuidV4();
   }
 
   private static isUuid(value: string) {
-    return isUUID(value)
+    return isUUID(value);
   }
 }
