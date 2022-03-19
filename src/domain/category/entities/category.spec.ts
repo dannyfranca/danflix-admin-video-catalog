@@ -1,4 +1,4 @@
-import { entityToBasePlain } from "@/@shared/entities/base-entity.utils";
+import { toTimestampablePlain } from "@/@shared/entities/timestampable-entity.utils";
 import UniqueEntityId from "@/@shared/value-objects/unique-entity-id";
 import { Category, PlainCategory } from "./category";
 import { makeRandomCategory } from "./utils";
@@ -15,7 +15,7 @@ describe("Category Tests", () => {
       name: "Movie",
       description: null,
       is_active: true,
-      ...entityToBasePlain(category),
+      ...toTimestampablePlain(category),
     } as PlainCategory);
 
     created_at = new Date();
@@ -29,7 +29,7 @@ describe("Category Tests", () => {
       name: "Movie",
       description: "Some description",
       is_active: false,
-      ...entityToBasePlain(category),
+      ...toTimestampablePlain(category),
     });
 
     category = new Category({ name: "Movie", description: "Some description" });
@@ -37,7 +37,7 @@ describe("Category Tests", () => {
       name: "Movie",
       description: "Some description",
       is_active: true,
-      ...entityToBasePlain(category),
+      ...toTimestampablePlain(category),
     });
 
     id = new UniqueEntityId();

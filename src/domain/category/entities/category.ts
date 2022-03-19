@@ -1,10 +1,10 @@
 import { SetOptional } from "type-fest";
 import {
-  BaseEntityProperties,
-  BaseEntityPropertiesInput,
-  PlainBaseEntity,
-  BaseEntity,
-} from "@/@shared/entities/base-entity";
+  TimestampableEntityProperties,
+  TimestampablePropertiesInput,
+  PlainTimestampable,
+  TimestampableEntity,
+} from "@/@shared/entities/timestampable-entity";
 
 export interface CategoryPropertiesOnly {
   name: string;
@@ -13,20 +13,20 @@ export interface CategoryPropertiesOnly {
 }
 
 export interface CategoryProperties
-  extends BaseEntityProperties,
+  extends TimestampableEntityProperties,
     CategoryPropertiesOnly {}
 
 export interface CategoryPropertiesInput
-  extends BaseEntityPropertiesInput,
+  extends TimestampablePropertiesInput,
     SetOptional<CategoryPropertiesOnly, "description" | "is_active"> {}
 
-export interface PlainCategory extends PlainBaseEntity {
+export interface PlainCategory extends PlainTimestampable {
   name: string;
   description: string | null;
   is_active: boolean;
 }
 
-export class Category extends BaseEntity {
+export class Category extends TimestampableEntity {
   private _name: string;
   private _description: string | null;
   private _is_active: boolean;
