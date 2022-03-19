@@ -1,10 +1,10 @@
-export const deepFreeze = <T extends { [k: string | number | symbol]: any }>(
-  obj: T
-): T => {
+export const deepFreeze = <T>(obj: T): T => {
+  if (obj === null || typeof obj !== "object") return obj;
+
   const propNames = Object.getOwnPropertyNames(obj);
 
   for (const name of propNames) {
-    const value = obj[name];
+    const value = (obj as any)[name];
     if (value && typeof value === "object") {
       deepFreeze(value);
     }
