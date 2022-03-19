@@ -24,10 +24,10 @@ export class BaseEntity {
   protected _created_at: Date;
   protected _deleted_at: Date | null;
 
-  constructor(props: BaseEntityPropertiesInput) {
-    this.id = props.id ?? new UniqueEntityId();
-    this._created_at = props.created_at ?? new Date();
-    this._deleted_at = props.deleted_at ?? null;
+  constructor(props?: BaseEntityPropertiesInput) {
+    this.id = props?.id ?? new UniqueEntityId();
+    this._created_at = props?.created_at ?? new Date();
+    this._deleted_at = props?.deleted_at ?? null;
   }
 
   get plain(): PlainBaseEntity {
