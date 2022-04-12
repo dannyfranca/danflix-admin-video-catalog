@@ -1,5 +1,5 @@
-import { BaseEntity } from "./base-entity";
-import { PlainBaseEntity } from "@/@shared/entities/base-entity";
+import { BaseEntity } from './base-entity';
+import { PlainBaseEntity } from '@/@shared/entities/base-entity';
 
 export const entityToBasePlain = (entity: BaseEntity): PlainBaseEntity => ({
   id: entity.id.value,

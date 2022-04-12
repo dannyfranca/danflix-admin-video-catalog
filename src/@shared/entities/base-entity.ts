@@ -1,6 +1,6 @@
-import { SetOptional } from "type-fest";
+import { SetOptional } from 'type-fest';
 
-import UniqueEntityId from "../value-objects/unique-entity-id";
+import UniqueEntityId from '../value-objects/unique-entity-id';
 
 export interface BaseEntityProperties {
   id: UniqueEntityId;
@@ -10,7 +10,7 @@ export interface BaseEntityProperties {
 
 export type BaseEntityPropertiesInput = SetOptional<
   BaseEntityProperties,
-  "id" | "created_at" | "deleted_at"
+  'id' | 'created_at' | 'deleted_at'
 >;
 
 export interface PlainBaseEntity {

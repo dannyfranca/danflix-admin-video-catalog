@@ -1,9 +1,9 @@
-import UniqueEntityId from "../value-objects/unique-entity-id";
-import { BaseEntity, PlainBaseEntity } from "./base-entity";
-import { entityToBasePlain } from "./base-entity.utils";
+import UniqueEntityId from '../value-objects/unique-entity-id';
+import { BaseEntity, PlainBaseEntity } from './base-entity';
+import { entityToBasePlain } from './base-entity.utils';
 
-describe("Entity Tests", () => {
-  test("entity plain object", () => {
+describe('Entity Tests', () => {
+  test('entity plain object', () => {
     let entity = new BaseEntity();
     let id: UniqueEntityId;
     let created_at: Date;
@@ -34,7 +34,7 @@ describe("Entity Tests", () => {
     });
   });
 
-  test("entity getters", () => {
+  test('entity getters', () => {
     let entity: BaseEntity;
     const created_at = new Date();
     const deleted_at = new Date();
@@ -49,7 +49,7 @@ describe("Entity Tests", () => {
     expect(entity.deleted_at).toBeNull();
   });
 
-  it("should extract plain object", () => {
+  it('should extract plain object', () => {
     const entity = new BaseEntity();
 
     expect(entityToBasePlain(entity)).toStrictEqual(entity.plain);

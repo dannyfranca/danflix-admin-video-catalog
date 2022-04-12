@@ -1,10 +1,10 @@
-import { SetOptional } from "type-fest";
+import { SetOptional } from 'type-fest';
 import {
   BaseEntityProperties,
   BaseEntityPropertiesInput,
   PlainBaseEntity,
   BaseEntity,
-} from "@/@shared/entities/base-entity";
+} from '@/@shared/entities/base-entity';
 
 export interface CategoryPropertiesOnly {
   name: string;
@@ -18,7 +18,7 @@ export interface CategoryProperties
 
 export interface CategoryPropertiesInput
   extends BaseEntityPropertiesInput,
-    SetOptional<CategoryPropertiesOnly, "description" | "is_active"> {}
+    SetOptional<CategoryPropertiesOnly, 'description' | 'is_active'> {}
 
 export interface PlainCategory extends PlainBaseEntity {
   name: string;
