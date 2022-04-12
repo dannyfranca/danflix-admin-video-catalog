@@ -17,4 +17,14 @@ describe('Object utils unit tests', () => {
 
     expect(() => (obj = {})).not.toThrow();
   });
+
+  it('should not deep freeze', () => {
+    let value = 3;
+
+    const frozenValue = deepFreeze(value);
+
+    expect(() => (value = 2)).not.toThrow();
+    expect(value).toBe(2);
+    expect(frozenValue).toBe(3);
+  });
 });
