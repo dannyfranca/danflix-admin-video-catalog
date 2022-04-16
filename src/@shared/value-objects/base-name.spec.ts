@@ -1,5 +1,5 @@
 import BaseName from './base-name';
-import { executeNameTest } from './base-name-test.factory';
+import { executeNameTest } from './base-name.test-factory';
 
 class StubName extends BaseName {
   readonly minLength = 3;
