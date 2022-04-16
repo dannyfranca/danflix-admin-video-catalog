@@ -5,9 +5,10 @@ import {
   PlainBaseEntity,
   BaseEntity,
 } from '@/@shared/entities/base-entity';
+import { Name } from './name.vo';
 
 export interface CategoryPropertiesOnly {
-  name: string;
+  name: Name;
   description: string | null;
   is_active: boolean;
 }
@@ -27,7 +28,7 @@ export interface PlainCategory extends PlainBaseEntity {
 }
 
 export class Category extends BaseEntity {
-  private _name: string;
+  private _name: Name;
   private _description: string | null;
   private _is_active: boolean;
 
@@ -41,7 +42,7 @@ export class Category extends BaseEntity {
   get plain(): PlainCategory {
     return {
       ...super.plain,
-      name: this._name,
+      name: this._name.value,
       description: this._description,
       is_active: this._is_active,
     };

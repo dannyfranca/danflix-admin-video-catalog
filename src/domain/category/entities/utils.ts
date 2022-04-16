@@ -1,11 +1,13 @@
-import { randomName } from '@/@shared/utils/mock';
+import { randomName, randomDescription } from '@/@shared/utils/mock';
 import UniqueEntityId from '@/@shared/value-objects/unique-entity-id';
-import { randomDescription } from '@/@shared/utils/mock';
 import { Category } from './category';
+import { Name } from './name.vo';
 
 export const makeRandomCategory = () =>
   new Category({
     id: new UniqueEntityId(),
-    name: randomName(),
+    name: makeRandomCategoryName(),
     description: randomDescription(),
   });
+
+export const makeRandomCategoryName = () => new Name(randomName());
