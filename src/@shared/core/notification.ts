@@ -1,5 +1,7 @@
+import { ManyNotificationsObject, NotificationMessages } from './types';
+
 export class NotificationMap<T extends string = string> {
-  private map: Map<T, string[]> = new Map();
+  private map: Map<T, NotificationMessages> = new Map();
 
   get size() {
     return this.map.size;
@@ -9,11 +11,11 @@ export class NotificationMap<T extends string = string> {
     return this.map.get(field);
   }
 
-  entries(): [string, string[]][] {
+  entries(): [T, NotificationMessages][] {
     return Array.from(this.map.entries());
   }
 
-  add(field: T, ...message: string[]) {
+  add(field: T, ...message: NotificationMessages) {
     if (!this.map.has(field)) this.map.set(field, []);
 
     this.map.get(field)?.push(...message);
@@ -24,7 +26,7 @@ export class NotificationMap<T extends string = string> {
   }
 
   toPlain() {
-    return Object.fromEntries(this.map) as Record<T, string[]>;
+    return Object.fromEntries(this.map) as ManyNotificationsObject<T>;
   }
 
   toString = () => {
