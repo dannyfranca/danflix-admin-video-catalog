@@ -6,14 +6,16 @@ describe('Notification Unit Tests', () => {
   beforeEach(() => {
     notification = new NotificationMap();
   });
-  test('should add messages', () => {
+  test('should add and clear messages', () => {
     expect(notification.size).toBe(0);
     notification.add('field', 'message');
     expect(notification.size).toBe(1);
     expect(notification.get('field')).toStrictEqual(['message']);
     notification.add('field2', 'message', 'message2');
+    expect(notification.size).toBe(2);
     expect(notification.get('field2')).toStrictEqual(['message', 'message2']);
     notification.add('field2', 'message3');
+    expect(notification.size).toBe(2);
     expect(notification.get('field2')).toStrictEqual([
       'message',
       'message2',
@@ -27,14 +29,13 @@ describe('Notification Unit Tests', () => {
       field: ['message'],
       field2: ['message', 'message2', 'message3'],
     });
-  });
-  it('should clear messages', () => {
-    notification.add('field', 'message');
-    notification.add('field2', 'message', 'message2');
-    expect(notification.size).toBe(2);
+    expect(notification.toString()).toBe(
+      'field: message\nfield2: message, message2, message3'
+    );
     notification.clear();
     expect(notification.size).toBe(0);
     expect(notification.entries()).toStrictEqual([]);
     expect(notification.toPlain()).toStrictEqual({});
+    expect(notification.toString()).toStrictEqual('');
   });
 });
