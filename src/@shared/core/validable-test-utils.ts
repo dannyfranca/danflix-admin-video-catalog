@@ -1,3 +1,4 @@
+import { Newable } from '../utils/types';
 import { ManyNotificationsArray, ManyNotificationsObject } from './types';
 import { Validable } from './validable';
 
@@ -82,3 +83,13 @@ export class StubValidableByNotificationsArray extends StubBaseValidable {
     return result;
   }
 }
+
+export const makeStubValidable =
+  (cls: Newable<StubBaseValidable>) =>
+  (props?: Partial<StubShape>, voProps?: Partial<StubValueObjectShape>) =>
+    new cls({
+      name: 'Stub',
+      quantity: 10,
+      ...props,
+      validable: new StubValueObject({ title: 'Title', ...voProps }),
+    });
