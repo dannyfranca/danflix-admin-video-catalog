@@ -1,7 +1,7 @@
 import { NotificationMap } from './notification';
 
 describe('Notification Unit Tests', () => {
-  let notification: NotificationMap;
+  let notification: NotificationMap<'field' | 'field2'>;
 
   beforeEach(() => {
     notification = new NotificationMap();
